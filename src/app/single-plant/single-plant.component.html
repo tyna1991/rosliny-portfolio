@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="your-plants">
+            <div class="options-plant-wrapper"><div class="options-plant"><span class="plant-option"><i class="fas fa-ellipsis-h"></i></span>
+                <div class="option-content-plant">
+                  <ul>
+                    <li (click)="edit()">Edytuj</li>
+                  </ul>
+                </div>
+              </div></div>
+                
+          <div class="main-info">
+            
+            <div class="img-container"><img src="{{plant[0].zdjecie}}"></div>
+            <div class="short-desc">
+              <div class="plant-detalis">
+                  <div class="plant-kind"><span>{{plant[0].gatunek}}</span><span class="variant" *ngIf="plant[0].odmiana">
+                        '{{plant[0].odmiana}}'</span></div>
+                  
+        
+                <div class="latin-name"><span >{{plant[0].nazwaLacinska}}</span></div>
+                <div class="more-detalis">
+                  <div class="height" *ngIf="plant[0].wysokosc"><span>wysokosc: </span>{{plant[0].wysokosc}}m</div>
+                  <span class="light-requirements" *ngIf="plant[0].naslonecznienie !=undefined">
+                        <span>nasłonecznienie: </span>
+                    <span *ngIf="plant[0].naslonecznienie !=undefined && plant[0].naslonecznienie[0]">
+                        stanowisko słoneczne, 
+                    </span>
+                    <span *ngIf="plant[0].naslonecznienie !=undefined && plant[0].naslonecznienie[1]">
+                        stanowisko półcieniste, 
+                    </span>
+                    <span *ngIf="plant[0].naslonecznienie !=undefined && plant[0].naslonecznienie[2]">
+                       stanowisko cieniste, 
+                    </span>
+                </span>
+                  <span class="water-requirements" *ngIf="plant[0].wilgotnosc !=undefined">
+                        <span>wilgotnosć: </span>
+                    <span *ngIf="plant[0].wilgotnosc !=undefined && plant[0].wilgotnosc[0]">duża, 
+                    </span>
+                    <span *ngIf="plant[0].wilgotnosc !=undefined && plant[0].wilgotnosc[1]">średnia, 
+                    </span>
+                    <span *ngIf="plant[0].wilgotnosc !=undefined && plant[0].wilgotnosc[2]">słaba, 
+                    </span>
+                </span>
+                  <span class="ph-requirements" *ngIf="plant[0].phOd">
+                        <span>pH: </span>
+                    <span>{{plant[0].phOd}}</span><span>-</span>
+                    <span>{{plant[0].phDo}}pH</span>
+                  </span>
+                  <span class="flowers-color" *ngIf="plant[0].kolorKwiatow !=undefined">
+                        <span>kolor kwiatów: </span>
+                    <span *ngIf="plant[0].kolorKwiatow=='niebieski'">niebieski</span>
+                    <span *ngIf="plant[0].kolorKwiatow=='pomarańczowy'">pomarańczowy</span>
+                    <span *ngIf="plant[0].kolorKwiatow=='różowy'">różowy
+                    </span>
+                    <span *ngIf="plant[0].kolorKwiatow=='zielony'">zielony
+                    </span>
+                    <span *ngIf="plant[0].kolorKwiatow=='żółty'">żółty
+                    </span>
+                    <span *ngIf="plant[0].kolorKwiatow=='czarny'">czarny
+                    </span>
+                    <span *ngIf="plant[0].kolorKwiatow=='czerwony'">czerwony</span>
+                    <span *ngIf="plant[0].kolorKwiatow=='biały'">biały
+                    </span>
+                    <span *ngIf="plant[0].kolorKwiatow=='fioletowy'">fioletowy</span>
+                    <span *ngIf="plant[0].kolorKwiatow=='brązowy'">brązowy
+                    </span>
+                </span>
+                  <span class="florescence" *ngIf="plant[0].kwitnienieOd">
+                        <span>kwitnienie: </span>
+                    <span *ngIf="plant[0].kwitnienieOd=='styczeń'">I</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='luty'">II</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='marzec'">III</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='kwiecień'">IV</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='maj'">V</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='czerwiec'">VI</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='lipiec'">VII</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='sierpień'">VIII</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='wrzesień'">IX</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='październik'">X</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='listopad'">XI</span>
+                    <span *ngIf="plant[0].kwitnienieOd=='grudzień'">XII</span>
+        
+                    <span>-</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='styczeń'">I</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='luty'">II</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='marzec'">III</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='kwiecień'">IV</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='maj'">V</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='czerwiec'">VI</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='lipiec'">VII</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='sierpień'">VIII</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='wrzesień'">IX</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='październik'">X</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='listopad'">XI</span>
+                    <span *ngIf="plant[0].kwitnienieDo=='grudzień'">XII</span>
+        
+                  </span>
+                  <div class="soil" *ngIf="plant[0].gleba">
+                    <span>gleba: </span>
+                <span>
+                 <span *ngIf="plant[0].gleba[0]!=undefined">żyzna, </span>
+                <span *ngIf="plant[0].gleba[1]!=undefined">umiarkowanie żyzna, </span>
+                <span *ngIf="plant[0].gleba[2]!=undefined">przeciętna, </span>
+                </span>
+              </div>
+              <div class="shape" *ngIf="plant[0].pokroj">
+                    <span>pokrój: </span>
+                 <span *ngIf="plant[0].pokroj!=undefined">{{plant[0].pokroj}}</span>
+              </div>
+                </div>
+              </div>
+            </div>
+               
+          </div>
+          <div class="main-info-continuation"> 
+               <div >
+                <h3>Pielęgnacja</h3>
+                <div class="main-info-continuation-container">  
+                    <div class="subcategory"><span>Zasilanie: </span> {{plant[0].zasilanie}}</div>
+                    <div class="subcategory"><span>Przycinanie: </span>  {{plant[0].przycinanie}}</div>
+                    <div class="subcategory"><span>Inne: </span>   {{plant[0].inneP}}</div>
+                </div>
+                </div>
+                <div >
+                        <h3>Dodatkowe Informacje</h3>
+                        <div class="main-info-continuation-container">  
+                                 {{plant[0].inneD}}
+                              <span>Przypisana grupa:</span>  {{plant[0].grupa}}
+                        </div>
+                        </div></div>
+    </div>
+  </div>

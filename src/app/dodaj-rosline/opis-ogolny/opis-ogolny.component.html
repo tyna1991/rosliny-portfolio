@@ -1,0 +1,145 @@
+<form [formGroup]="ogolnyForm" novalidate>
+  <div class="tab-pane active">
+    <br />
+    <div>
+      <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-12 col-md-12'>
+        <div class="row">
+          <div class='col-xs-12 col-md-6'>
+            <div class="form-group">
+              <label class="control-label" for="gatunek">Gatunek</label>
+              <input formControlName="gatunek" class="form-control input-md" required name="gatunek" type="text"
+                placeholder="Gatunek">
+                <div class="alert alert-danger" *ngIf="!ogolnyForm.controls['gatunek'].valid&&(ogolnyForm.controls['gatunek'].dirty||submitted)">
+                  <span  *ngIf="ogolnyForm.controls.gatunek.errors.required">Pole gatunek jest wymagane</span>
+                </div> 
+                <!-- <div class="alert alert-danger" [hidden]="(!submitted || !ogolnyForm.controls['gatunek'].dirty) && ogolnyForm.controls['gatunek'].valid">Nazwa gatunku jest wymagana</div> -->
+            </div>
+            
+          </div>
+          <div class='col-xs-12 col-md-6'>
+            <div class="form-group">
+              <label class="control-label" for="lastname">Odmiana</label>
+              <input formControlName="odmiana" class="form-control input-md"  name="odmiana" type="text" placeholder="Odmiana"
+               >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-xs-12 col-md-6'>
+            <div class="form-group">
+              <label class="control-label" for="nazwaLacinska">Nazwa łacińska</label>
+              <input formControlName="nazwaLacinska" class="form-control input-md"  name="nazwa łacinska" type="text"
+                placeholder="Nazwa łacinska" >
+            </div>
+          </div>
+          <div class='col-xs-6 col-md-6 col-lg-4'>
+            <div class="form-group">
+              <label class="control-label" for="kwitninie">Termin kwitnienia</label>
+              <div class="range-wrapper">
+                <div class="wrapper">
+                  <div class="since"><span>Od</span></div>
+                  <div class="select-date"><select formControlName="kwitnienieOd" class="form-control input-md col-md-12"  name="kwitnienieOd">
+                    <option>-</option>
+                    <option>styczeń</option>
+                      <option>luty</option>
+                      <option>marzec</option>
+                      <option>kwiecień</option>
+                      <option>maj</option>
+                      <option>czerwiec</option>
+                      <option>lipiec</option>
+                      <option>sierpień</option>
+                      <option>wrzesień</option>
+                      <option>październik</option>
+                      <option>listopad</option>
+                      <option>grudzień</option>
+                  </select></div>
+
+                  </div>
+                <div class="wrapper">
+                  <div class="to"><span>Do</span></div>
+                  <div class="select-date">
+                      <select formControlName="kwitnienieDo" class="form-control input-md input-md col-sm-12"  name="kwitnienieDo"
+                     >
+                      <option>-</option>
+                      <option>styczeń</option>
+                      <option>luty</option>
+                      <option>marzec</option>
+                      <option>kwiecień</option>
+                      <option>maj</option>
+                      <option>czerwiec</option>
+                      <option>lipiec</option>
+                      <option>sierpień</option>
+                      <option>wrzesień</option>
+                      <option>październik</option>
+                      <option>listopad</option>
+                      <option>grudzień</option>
+                    </select></div>
+                    
+                </div></div>
+                <div style="margin-top: 10px;" class="alert alert-danger" *ngIf="ogolnyForm.get('kwitnienieDo').errors?.error">
+                  <span >{{ogolnyForm.get('kwitnienieDo').errors.error}}</span>
+                </div> 
+                
+            </div>
+          </div>
+          <div class='col-xs-6 col-md-6 col-lg-2'>
+            <div class="form-group">
+              <label class="control-label" for="kolorKwiatow">Kolor kwiatow</label>
+              <input formControlName="kolorKwiatow" class="form-control input-md"  name="kolorKwiatow" type="text"
+                placeholder="Kolor kwiatów" style="display: none">
+                <app-color-picker (eventH)=saveColorName($event) (eventC)=saveColorSample($event) [heading]=colorName [color]=sample.color></app-color-picker>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class='col-xs-6 col-md-3'>
+            <div class="form-group">
+              <label class="control-label" for="wysokosc">Wysokość</label>
+              <input formControlName="wysokosc" class="form-control input-md" ng-pattern="integerval" name="wysokosc" type="text"
+                placeholder="Wysokość" >
+                <div class="alert alert-danger" *ngIf="!ogolnyForm.controls['wysokosc'].valid&&(ogolnyForm.controls['wysokosc'].dirty||submitted)">
+                  <span>Wpisz liczbę</span>
+                </div> 
+            </div>
+          </div>
+          <div class='col-xs-6 col-md-3'>
+            <div class="form-group">
+              <label class="control-label" for="pokroj">Pokrój</label>
+              <select formControlName="pokroj" class="form-control input-md"  name="pokroj" type="text" placeholder="Pokrój"
+                >
+                <option value="" selected></option>
+                <option>kulisty</option>
+                <option>stożkowaty</option>
+                <option>kolumnowy</option>
+                <option>płożący</option>
+                <option>rozwarty</option>
+                <option>inny</option>
+                </select>
+            </div>
+          </div>
+          <div class='col-xs-6 col-md-6'>
+            <div class="form-group image-group">
+              <div>
+              <label class="control-label" for="zdjecie">Zdjęcie</label>
+               <input accept="image/*" class="add-file" type="file" (change)="readURL($event.target.files[0])">
+               </div>
+              
+               <div class="img-container"  [ngClass]="{'hide': (imageSrc == '#' )}"> <span class="control-label" for="zdjecie">Obecne zdjęcie</span><img  id="plantImage" [src]="imageSrc" ></div>
+               
+
+            </div>
+          </div>
+        </div>
+        
+
+
+        <div class="form-group text-center buttons">
+              <button  class="button prev-button hidden-button"> Wstecz</button>
+              <div> <button id="buttonNext" class="button next-button" (click)=goToNext() > Dalej</button>
+                <button class="button finish-button" (click)=goToLast() > Zakończ </button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

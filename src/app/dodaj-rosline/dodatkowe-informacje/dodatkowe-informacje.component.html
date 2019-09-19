@@ -1,0 +1,64 @@
+
+<!-- <div [ngClass]="open ? 'show modal':'hide modal'">
+    <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h3>Dodaj nową grupę</h3>
+            <form [formGroup]="newGroup" (ngSubmit)=saveGroup(newGroup)>
+                   <div class="modal-input-container">
+                        <label>Wpisz nazwę grupy: </label>
+                        <input formControlName="nazwa">
+                        <div class="alert alert-danger" *ngIf="!newGroup.controls['nazwa'].valid&&(newGroup.controls['nazwa'].dirty||submitted)">
+                            <span  *ngIf="newGroup.controls.nazwa.errors.required">Pole nazwa jest wymagane</span>
+                          </div> 
+                          <div class="alert alert-danger" *ngIf="nameExist">
+                            <span>Nazwa grupy już istnieje</span>
+                          </div> 
+                   </div> 
+                    <div class="modal-button-container"><button class="action-button" type="submit">Zapisz grupę</button></div>
+            </form>
+    </div>
+      
+</div> -->
+
+<app-add-group-modal [open]="open" (closed)=onClose($event)></app-add-group-modal>
+<form [formGroup]="dodatkoweForm" novalidate>
+    <div class="tab-pane active">
+        <br/>
+        <div>
+            <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-12'>
+                <div>
+                    <div class='row reverse'>
+                        <div class="form-group grupy-wrapper col-xs-12 col-md-12 col-lg-8">
+                            <div class='input-container'>
+                            <label class="control-label" for="gatunek">Grupa</label>  
+                            <select class="form-control input-md" formControlName="grupa" type="text" placeholder="Grupa"  [(ngModel)]="defaultGroup"> 
+                                <option *ngFor="let grupaRoslin of grupy.nazwa" [value]="grupaRoslin">
+                                    {{grupaRoslin}}
+                                </option>
+                                </select> 
+                                </div> 
+                                <div class='col-xs-4 col-sm-4 button--margin'><button class="action-button" (click)=openModal()>Dodaj grupę</button></div>
+                                
+                        </div>
+                        <div class='col-md-12 col-lg-4 group-desc'>
+                                <p>Twój ogród podzielony jest na różne części, a może chcesz lepiej zorganizować kolekcję roślin poprzez podział na kategorie? W tym celu możesz użyć funkcji dodawania grup.</p>
+                            </div>
+                    </div>
+                    <div class='row'> <div class='col-sm-12'>
+                            <div class="form-group">
+                                <label class="control-label" for="lastname">Inne</label>  
+                                <textarea class="form-control input-md" formControlName="inne" type="text" placeholder="Inne"></textarea>
+                            </div>
+                        </div></div>
+                   
+                </div>
+               
+                <div class="form-group text-center buttons">  
+                        <div class="next-prev-buttons"><button (click)="goToPrevious()" class="button prev-button"> Wstecz</button>
+                            <button id="buttonNext" class="button next-button" style="display: none"> Dalej</button>
+                             </div><button class="button finish-button" (click)="goToLast()"> Zakończ </button>
+                      </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,107 @@
+
+.fa-search:before{
+  font-family: FontAwesome;
+  font-style: initial;
+}
+.search-box{
+    max-width: 100%;
+    height: 60px;
+}
+.input-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+      top: 4px;
+    position: relative;
+}
+#button{
+  position: absolute;
+  /* top: -39px; */
+  right: 0px;
+  display: inline-block;
+}  
+
+.my-button{
+  vertical-align: 13px;
+  margin-left:5px;
+  color:white;
+}
+.search-box-input
+{
+    width: 100%;
+    position:relative;
+}
+
+.mat-form-field-infix
+{
+  width:500px !important;
+}
+#add-plant
+{ 
+  background: #53b418;
+  border-radius: 50%;
+}
+#add-group{
+ /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#606c88+0,2a0b8e+100 */
+background: #606c88; /* Old browsers */
+background: -moz-linear-gradient(top, #606c88 0%, #2a0b8e 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #606c88 0%,#2a0b8e 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #606c88 0%,#2a0b8e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#2a0b8e',GradientType=0 ); /* IE6-9 */
+}
+#input{
+  width:100%;
+}
+#keyword {
+  border: 3px solid #ccc;
+  padding: 9px;
+  outline: none;
+  transition: border 0.5s ease-in-out;
+  border-radius: 30px;
+  padding-right: 50px;
+  line-height: 20px;
+  }
+  .filter-select {
+    
+    list-style: none;
+    font-size: 1.1em;
+    color: rgb(105, 105, 105);
+    border: 1px solid #ccc;
+    border-top: none;
+    /*so things don't jump around*/
+    position: absolute;
+    transform: translate(-54px);
+    top:50px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #fff
+  }
+  .filter-select-list {
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+ 
+.plants-box
+{
+  
+  position: relative;
+  top:20px;
+  width: 1200px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  right: 0;
+  left:0;
+  margin-left:auto;
+  margin-right:auto;
+  height:auto;
+  margin-bottom:20px;
+}
+
+
+@media(max-width:1200px){
+  .search-box-content{
+    width: 100%;}
+    .plants-box{
+      width: 100%;
+    }
+  }

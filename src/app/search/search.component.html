@@ -1,0 +1,38 @@
+<div class="search-box">
+  <div class="search-box-content">
+      <div class="input-buttons">
+        <div class="input-button-container" style="width:100%">
+      <div class="input-button">
+ <div id="input"> 
+<mat-form-field class="search-box-input" id="textInput">
+    <input matInput id="keyword" type="text" [formControl]="queryField" #myplants (keyup.enter)="addplant(myplants.value, trigger)" [matAutocomplete]="auto" #trigger="matAutocompleteTrigger" >
+    <mat-placeholder class="placeholder">Szukaj</mat-placeholder>
+    <mat-autocomplete #auto="matAutocomplete" class="filter-select" (optionSelected)="onSelectionChanged($event)" [displayWith]="displayFn"> 
+      <mat-option class="filter-select-list" *ngFor="let result of results" class="filter-select-list"  [value]="result">{{result.gatunek}} <span *ngIf="result.odmiana!=undefined">'{{result.odmiana}}'</span></mat-option>
+      </mat-autocomplete>
+      <div id="button">
+        <button class="btn my-button" id="add-plant" (click)="addplant(myplants.value, trigger);"><i class="fas fa-search"></i></button>
+        </div>
+</mat-form-field>
+</div> 
+
+</div>
+</div>
+<div class="input-button-container" style="width:100%">
+  </div>
+ 
+</div>
+</div>
+<br>
+<!-- <div class="plants-box">
+  <ng-container *ngIf="empty_List; else showPlants">
+    <div class="emptyList">Lista jest pusta</div>
+  </ng-container>
+<ng-template #showPlants> 
+  <ul class="row plants" *ngFor="let plant of plantslist">
+  <li class="plant col-lg-4" >
+   <div class="plant-detalis"><div class="plant-img"><img src="https://via.placeholder.com/250"></div><div class="plant-spec"><div class="plant-spec-name"><div class="plant-name">{{plant.name}}, {{plant.id}} </div><button (click)="remove(plant)">Usuń roślinę</button></div></div></div>
+ </li> 
+</ul>
+</ng-template>
+</div> -->

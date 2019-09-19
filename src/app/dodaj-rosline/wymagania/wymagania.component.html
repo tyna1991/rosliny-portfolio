@@ -1,0 +1,102 @@
+
+<form [formGroup]="wymaganiaForm" novalidate>
+    <div class="tab-pane active">
+        <br/>
+        <div >
+            <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-12'>
+                <div class='row'>
+                    <div class='col-xs-12 col-md-6 col-lg-3'>
+                        <div class="form-group">
+                                <div class="label">Nasłonecznienie</div>
+                                <div> <label  formArrayName="naslonecznienie" class="control-label display--flex" *ngFor="let element of wymaganiaForm.controls.naslonecznienie.controls; let i = index">    
+                                    <input class="form-control input-md " [formControlName]='i' type="checkbox">   
+                                       
+                                        <span class="checkmark"></span>
+                                        {{naslonecznienie[i].name}}
+                                </label></div>
+                           
+                        </div>
+                    </div>
+                    <div class='col-xs-12 col-md-6 col-lg-3'>
+                        <div class="form-group">
+                            <div class="label">Gleba</div>
+                            <div> <label  formArrayName="gleba" class="control-label display--flex" *ngFor="let element of wymaganiaForm.controls.gleba.controls; let i = index">    
+                                <input class="form-control input-md " [formControlName]='i' type="checkbox">   
+                                   
+                                    <span class="checkmark"></span>
+                                    {{gleba[i].name}}
+                            </label></div>
+                       
+                    </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <div class="label">Wilgotność</div>
+                            <div> <label  formArrayName="wilgotnosc" class="control-label display--flex" *ngFor="let element of wymaganiaForm.controls.wilgotnosc.controls; let i = index">    
+                                <input class="form-control input-md " [formControlName]='i' type="checkbox">   
+                                   
+                                    <span class="checkmark"></span>
+                                    {{wilgotnosc[i].name}}
+                            </label></div>
+                       
+                    </div>
+                    </div>
+                    <div class='col-xs-12 col-md-6 col-lg-3'>
+                        <div class="form-group">
+                          <label class="control-label">pH</label>
+                          <div class="range-wrapper">
+                            <div class="wrapper">
+                              <div class="since"><span>Od</span></div>
+                              <div class="select-date"><select formControlName="phOd" class="form-control input-md col-sm-12"  type="text" >
+                                <option value="" selected>-</option>
+                                <option>-4,5</option>
+                                  <option>4,5</option>
+                                  <option>5</option>
+                                  <option>5,5</option>
+                                  <option>6</option>
+                                  <option>6,5</option>
+                                  <option>7</option>
+                                  <option>7,5</option>
+                                  <option>7,5-</option>
+                              </select></div>
+            
+                              </div>
+                            <div class="wrapper">
+                              <div class="to"><span>Do</span></div>
+                              <div class="select-date">
+                                  <select formControlName="phDo" class="form-control input-md input-md col-sm-12"  type="text">
+                                  <option value="" selected>-</option>
+                                  <option>-4,5</option>
+                                  <option>4,5</option>
+                                  <option>5</option>
+                                  <option>5,5</option>
+                                  <option>6</option>
+                                  <option>6,5</option>
+                                  <option>7</option>
+                                  <option>7,5</option>
+                                  <option>7,5-</option>
+                                </select></div>
+                                
+                            </div></div>
+                             <div style="margin-top: 10px;" class="alert alert-danger" *ngIf="!wymaganiaForm.controls['phDo'].valid&&(wymaganiaForm.controls['phDo'].dirty||submitted)">
+                              <span *ngIf="wymaganiaForm.get('phDo').errors.error!==null">{{wymaganiaForm.get('phDo').errors.error}}</span>
+                            </div> 
+                            
+                        </div>
+                      </div>
+                </div>
+               
+               
+                
+            
+                    
+                <div class="form-group text-center buttons">
+                        
+                        <div class="next-prev-buttons"><button (click)="goToPrevious()" class="button prev-button"> Wstecz</button>
+                            <button id="buttonNext" class="button next-button" (click)="goToNext()"> Dalej</button>
+                             </div><button class="button finish-button" (click)="goToLast()"> Zakończ </button>
+                      </div>
+            </div>
+        </div>
+    </div>
+</form>

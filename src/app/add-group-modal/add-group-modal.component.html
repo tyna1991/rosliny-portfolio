@@ -1,0 +1,20 @@
+<div [ngClass]="open ? 'show modal':'hide modal'">
+    <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h3>Dodaj nową grupę</h3>
+            <form [formGroup]="newGroup" (ngSubmit)=saveGroup(newGroup)>
+                   <div class="modal-input-container">
+                        <label>Wpisz nazwę grupy: </label>
+                        <div class="modal-input"><input formControlName="nazwa">
+                          <div class="alert alert-danger" *ngIf="!newGroup.controls['nazwa'].valid&&(newGroup.controls['nazwa'].dirty||submitted)">
+                              <span  *ngIf="newGroup.controls.nazwa.errors.required">Pole nazwa jest wymagane</span>
+                            </div> 
+                            <div class="alert alert-danger" *ngIf="nameExist">
+                              <span>Nazwa grupy już istnieje</span>
+                            </div> </div>
+                   </div> 
+                    <div class="modal-button-container"><button class="action-button" type="submit">Zapisz grupę</button></div>
+            </form>
+    </div>
+      
+</div>

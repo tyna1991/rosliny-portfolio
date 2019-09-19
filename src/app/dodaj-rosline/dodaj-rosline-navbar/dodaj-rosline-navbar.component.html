@@ -1,0 +1,42 @@
+<nav>
+    <ul class="nav nav-tabs" id="myTab">
+        <div class="liner"></div>          
+        <!-- circular user icon -->
+        <li >
+            <a  class="active" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="opis ogólny"  (click)=canActivate1($event)>
+                opis ogolny<span class="round-tabs one">
+                </span>
+            </a>
+        </li>
+        <!-- circular tasks icon -->
+         <li >
+            <a  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="wymagania"  (click)=canActivate2($event)>
+                wymagania<span class="round-tabs two">
+                </span> 
+            </a>
+        </li>
+ 
+        <!-- circular home icon -->
+        <li >
+            <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="pielegnacja" (click)=canActivate3($event)>    
+                pielegnacja<span class="round-tabs three">
+                </span>
+            </a>
+        </li>
+ 
+        <!-- circular ok icon -->
+        <li >
+            <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="dodatkowe informacje" (click)=canActivate4($event)>
+                dodatkowe informacje<span class="round-tabs four">
+                </span>
+            </a>
+        </li>
+        <!-- <li >
+                <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="gotowe" (click)=canActivate5($event)>
+                    gotowe<span class="round-tabs five">
+                    </span>
+                </a>
+            </li> -->
+                
+    </ul>
+</nav>

@@ -1,0 +1,22 @@
+<div class="color-picker">
+  <div class="summary-info" (click)="toggleColors()">
+    <div class="info">
+      <div class="form-control color-option dropdown">
+        <div class="circle" [ngStyle]="{'background': color}" [ngClass]="{'white': color=='#fff'}"> </div>
+        <p class="style option-label">{{ heading }}</p>
+        <p class="style-value" style="display:none">{{ color }}</p></div>
+        
+    </div>
+    
+  </div>
+  <div class="opened list" *ngIf="show">
+    <div class="colors">
+      <div (click)="changeColor(paint)"  *ngFor="let paint of colorValues.colors" class="color-option">
+        <div class="option-color circle" [ngStyle]="{'background': paint.hex}" [ngClass]="{'white': paint.hex=='#fff'}"></div>
+        <div class="option-label" > {{paint.label}}</div>
+       
+      </div>
+    </div>
+
+  </div>
+</div>

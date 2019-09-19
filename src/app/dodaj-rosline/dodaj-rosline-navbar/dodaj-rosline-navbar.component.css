@@ -1,0 +1,75 @@
+
+#myTab li a::before{
+content:'';
+width:30px;
+height: 30px;
+border:1px solid #53B418;
+border-radius:50%;
+display: block;
+margin: 0 auto;
+margin-bottom: 15px;
+}
+#myTab li:last-child a::after{
+    content:none;
+}
+#myTab li a{
+    display: block;  
+    text-align: center;
+    color:#000;
+    line-height: 20px;
+    font-weight: 300;
+    cursor:pointer;
+}
+#myTab li a::after{
+    content: '';
+    width: 65%;
+    height: 1px;
+    background-color: #E4E4E4;
+    position: absolute;
+    left: 67%;
+    top: 16px;
+    z-index: 1;
+}
+#myTab li{
+    position: relative;
+    width: 25%;
+}
+#myTab li a.active{
+    font-weight: 600;
+}
+#myTab li a.active::before{
+    background:url(../../../assets/images/circle.png) center no-repeat;
+    background-color: #ffffff;
+    content:'';
+}
+.nav-tabs{
+    width:100%;
+    margin: 75px 0 50px;
+    border: none;
+}
+@media(max-width:600px){
+   
+    #myTab li a::after{
+        top:10px;
+    }
+    #myTab li a::before{
+        width: 20px;
+        height: 20px;
+    }
+    #myTab li a.active::before{
+        background-size: 67%;
+    }
+    #myTab li a{
+        font-size: 13px;
+        line-height: 18px;
+    }
+    .nav-tabs{
+        margin: 40px 0 10px;
+    }
+    @media(max-width:380px){
+        #myTab li a{
+            font-size: 10px;
+            line-height: 14px;
+        }
+    }
+}

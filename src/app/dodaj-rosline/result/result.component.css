@@ -1,0 +1,14 @@
+.result{
+    text-align: center;
+    font-size: 22px;
+    color: #868686;
+    font-weight: 600;
+    margin-top: 60px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.result-wrapper{
+    text-align: center;
+    margin-top: 60px;
+    color: #eee;
+    cursor: pointer;
+}

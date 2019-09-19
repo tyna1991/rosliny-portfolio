@@ -1,0 +1,127 @@
+.main-info{
+    display: flex;
+}
+.main-info .img-container img{
+    width:100%
+}
+.main-info .img-container{
+margin-right: 20px;
+flex:1;
+}
+.plant-kind{
+    font-size: 30px;
+    text-align: center;
+}
+.latin-name{
+    font-size: 24px;
+    text-align: center;
+}
+.more-detalis{
+flex-direction: column;
+}
+.ph-requirements, .florescence{
+    border:none;
+    padding:0px;
+}
+.short-desc{
+    display: flex;
+    justify-content: flex-end;
+    flex:1;
+    text-align: right;
+    align-items: center;
+}
+/* .light-requirements, .height, .ph-requirements, .flowers-color, .florescence, .water-requirements, .soil{
+    justify-content: flex-end;
+} */
+
+.light-requirements, .height, .ph-requirements, .flowers-color, .florescence, .water-requirements, .soil, .shape{
+    width:100%;
+    text-align: left;
+  }
+  .light-requirements>span:first-child, .height>span:first-child, .ph-requirements>span:first-child, .flowers-color>span:first-child, .florescence>span:first-child, .water-requirements>span:first-child, .soil>span:first-child, .shape>span:first-child{
+    font-weight: 500;
+  }
+.main-info-continuation{
+    margin-top: 20px;
+}
+.main-info-continuation-container{
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding:10px;
+}
+.main-info-continuation h3{
+    font-size: 24px;
+    color:#39800F;
+}
+.main-info-continuation-container .subcategory{
+    margin-bottom: 10px;
+}
+.main-info-continuation-container .subcategory span{
+    font-weight: 500;
+}
+.main-info-continuation>div{
+margin-top: 30px;
+}
+.soil ul{
+list-style-type: none;
+padding:0;
+}
+.soil{
+    text-align: left;
+}
+.options-plant-wrapper{
+    text-align: right;
+}
+.option-content-plant{
+    display:none;
+    position: absolute;
+    right: 0;
+    margin-top:10px;
+    width: 145px;
+    background-color: #fff;
+    z-index: 9;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+}
+.options-plant:hover .option-content-plant{
+    display: block;
+}
+.options-plant{
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border: 1px solid #a3a3a3;
+}
+.options-plant span{
+    text-align: center;
+    display: block;
+    top: 9px;
+    position: relative;
+    width:30px;
+}
+.options-plant ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+}
+.plant-detalis{
+width: 100%;
+}
+@media(max-width:800px){
+    .main-info{
+        flex-direction: column;
+    }
+    .main-info .img-container{
+        margin-right: 0px; 
+        margin-top: 20px;
+    }
+}
+@media(max-width:450px){
+    .your-plants{
+        padding:0 15px;
+    }}
