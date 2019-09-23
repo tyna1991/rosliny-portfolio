@@ -48,6 +48,7 @@ export class SubmitService {
   
 
   console.log("submit");
+  this.idArray=[];
         console.log(this.formData);
         let indexExist=-1;
         console.log(this.plants);
@@ -56,7 +57,6 @@ export class SubmitService {
                 this.idArray.push(elem.id);
             })
             indexExist=this.idArray.findIndex(elem=>elem==this.formData.id);
-            console.log(this.formData.id);
             if(indexExist!=-1){
                 this.maxId=this.formData.id;
             }else{
@@ -70,11 +70,9 @@ export class SubmitService {
         }
         
         if(indexExist!=-1){ //jeżeli edytujemy istniejące id
-                  this.plants.splice(indexExist,1);
-                  console.log(indexExist);
+            this.plants.splice(indexExist,1);
                   this.formData.id=this.maxId;
                   //this.plants[indexExist]=this.formdata;
-                  console.log(this.formData);
                   this.plants.splice(indexExist,0,this.formData);
                   this.savePlantService.savePlants(this.plants); 
                   this.formData = this.formDataService.resetFormData();
