@@ -38,6 +38,10 @@ li{
     font-size:140%;
     margin-right: 2rem !important;
 }
+.footer-background{
+    background-color: #53b418;
+    height:25px;
+}
 @media(max-width:991px){
     #navbarSupportedContent{
         width:100%;

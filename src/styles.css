@@ -25,6 +25,9 @@
 .form-group{
   position: relative;
 }
+.board{
+  margin-bottom:70px;
+}
 .board nav{
   max-width: 850px;
   margin: 0 auto;

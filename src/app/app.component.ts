@@ -24,6 +24,9 @@ import { Component, ViewChild, ElementRef} from '@angular/core';
 </div>
   </nav>
   <router-outlet></router-outlet>
+  <footer>
+  <div class="footer-background"></div>
+  </footer>
 `,
   styleUrls: ['./app.component.css'
 ]
