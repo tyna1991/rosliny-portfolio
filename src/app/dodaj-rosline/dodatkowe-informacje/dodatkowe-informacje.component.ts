@@ -80,7 +80,7 @@ export class DodatkoweInformacjeComponent implements OnInit {
       return true;
   }
 
-  goToPrevious(form: any) {
+  goToPrevious() {
     if (this.save(this.dodatkoweForm)) {
         // Navigate to the personal page
         this.router.navigate(['../pielegnacja'], {relativeTo: this.activeRoute});

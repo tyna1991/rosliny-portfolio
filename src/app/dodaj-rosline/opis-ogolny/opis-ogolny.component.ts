@@ -23,7 +23,7 @@ export class OpisOgolnyComponent implements OnInit {
   ogolnyForm:FormGroup;
   colorName:string;
   dateArray=["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
-  private sample: Sample;
+  sample: Sample;
   dateIndexOd:number = 0;
   dateIndexDo:number = 0;
   fileToUpload: File = null;

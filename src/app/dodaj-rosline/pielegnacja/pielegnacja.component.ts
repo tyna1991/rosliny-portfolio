@@ -33,7 +33,7 @@ export class PielegnacjaComponent implements OnInit {
         inne:  this.pielegnacja.inne,
        });
   }
-  goToPrevious(form: any) {
+  goToPrevious() {
     if (this.save(this.pielegnacjaForm)) {
         // Navigate to the personal page
         this.router.navigate(['../wymagania'], {relativeTo: this.activeRoute});

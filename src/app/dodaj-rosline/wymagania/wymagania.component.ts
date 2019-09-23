@@ -86,7 +86,7 @@ export class WymaganiaComponent implements OnInit {
       this.workflowService.validateStep(STEPS.wymagania, true);
       return true;
   }
-  goToPrevious(form: any) {
+  goToPrevious() {
     if (this.save(this.wymaganiaForm)) {
         // Navigate to the personal page
         this.router.navigate(['../opis-ogolny'], {relativeTo: this.activeRoute});
@@ -173,6 +173,9 @@ addCheckboxes(){
         
 });
 }
+
+
+
 public isphValid(): ValidatorFn{
     return (group: FormGroup) : ValidatorFn => {
       const Od = group.controls['phOd'];
