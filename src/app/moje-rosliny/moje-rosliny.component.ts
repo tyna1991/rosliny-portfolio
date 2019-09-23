@@ -49,44 +49,114 @@ export class MojeRoslinyComponent implements OnInit, OnDestroy {
         let id=Number(el.getAttribute('data-plantid'));
         //let grupa = el.getAttribute('data-plantgroup');
         let grupaTagert = target.getAttribute('data-groupname');
-        this.plants.filter((plant, index) =>{
-          if(plant.id==id){
-            if(plant.grupa!=grupaTagert){
-              plant.grupa=grupaTagert;
-              this.savePlantService.savePlants(this.plants);
-              this.plants=this.savePlantService.get();
-              this.checkIfGroupsHasPlants();
-            } 
-            else{
-              let newIndex;
-              let oldIndex=index;
-                  if(sibling==null){
-                    newIndex=this.plants.length-1;
+        let indexDroppedPlant= this.plants.findIndex((plant=>plant.id==id));
+        if(indexDroppedPlant!=-1){
+          if(this.plants[indexDroppedPlant].grupa!=grupaTagert){
+            //zmiana kolejnosci
+            let newIndex;
+            let oldIndex=indexDroppedPlant;
+            let droppedPlant:Formdata=this.plants[indexDroppedPlant];
+                if(sibling==null){
+                  newIndex=this.plants.length-1;
+                }else{
+                  let siblingId=Number(sibling.getAttribute('data-plantid'));
+                  let siblingIndex;
+                  this.plants.filter((plant,index)=>{
+                      if(plant.id==siblingId){
+                        siblingIndex=index
+                      }
+                  });
+                  if(oldIndex<siblingIndex){
+                    newIndex=siblingIndex-1;
                   }else{
-                    let siblingId=Number(sibling.getAttribute('data-plantid'));
-                    let siblingIndex;
-                    this.plants.filter((plant,index)=>{
-                        if(plant.id==siblingId){
-                          siblingIndex=index
-                        }
-                    });
-                    if(oldIndex<newIndex){
-                      newIndex=siblingIndex-1;
-                    }else{
-                      newIndex=siblingIndex;
-                    }
+                    newIndex=siblingIndex;
                   }
-                  if(newIndex=!oldIndex){
-                    this.plants.splice(oldIndex,1);
-                  this.plants.splice(newIndex,0,plant);
-                  this.savePlantService.savePlants(this.plants);
-                  this.plants=this.savePlantService.get();
+                }
+                console.log("nowyIndex"+newIndex);
+                console.log("staryIndex"+oldIndex);
+                //zmiana grupy
+                droppedPlant.grupa=grupaTagert;
+                this.plants.splice(oldIndex,1);
+                this.plants.splice(newIndex,0,droppedPlant);
+                this.savePlantService.savePlants(this.plants);
+            
+            //this.savePlantService.savePlants(this.plants);
+            this.plants=this.savePlantService.get();
+            this.checkIfGroupsHasPlants();
+          } 
+          else{
+            let newIndex;
+            let oldIndex=indexDroppedPlant;
+            let droppedPlant:Formdata=this.plants[indexDroppedPlant];
+                if(sibling==null){
+                  newIndex=this.plants.length-1;
+                }else{
+                  let siblingId=Number(sibling.getAttribute('data-plantid'));
+                  let siblingIndex;
+                  this.plants.filter((plant,index)=>{
+                      if(plant.id==siblingId){
+                        siblingIndex=index
+                      }
+                  });
+                  if(oldIndex<siblingIndex){
+                    newIndex=siblingIndex-1;
+                  }else{
+                    newIndex=siblingIndex;
                   }
-                  
-                  
-            }
+                }
+                console.log("nowyIndex"+newIndex);
+                console.log("staryIndex"+oldIndex);
+                //if(newIndex=!oldIndex){
+                  this.plants.splice(oldIndex,1);
+                this.plants.splice(newIndex,0,droppedPlant);
+                this.savePlantService.savePlants(this.plants);
+                this.plants=this.savePlantService.get();
+               // }
+                
+                
+          }
         }
-    });
+    //     this.plants.filter((plant, index) =>{
+    //       if(plant.id==id){
+    //         if(plant.grupa!=grupaTagert){
+    //           plant.grupa=grupaTagert;
+    //           this.savePlantService.savePlants(this.plants);
+    //           this.plants=this.savePlantService.get();
+    //           this.checkIfGroupsHasPlants();
+    //         } 
+    //         else{
+    //           console.log("event w tej samej grupie");
+    //           let newIndex;
+    //           let oldIndex=index;
+    //               if(sibling==null){
+    //                 newIndex=this.plants.length-1;
+    //               }else{
+    //                 let siblingId=Number(sibling.getAttribute('data-plantid'));
+    //                 let siblingIndex;
+    //                 this.plants.filter((plant,index)=>{
+    //                     if(plant.id==siblingId){
+    //                       siblingIndex=index
+    //                     }
+    //                 });
+    //                 if(oldIndex<newIndex){
+    //                   newIndex=siblingIndex-1;
+    //                 }else{
+    //                   newIndex=siblingIndex;
+    //                 }
+    //               }
+    //               console.log("nowyIndex"+newIndex);
+    //               console.log("staryIndex"+oldIndex);
+    //               //if(newIndex=!oldIndex){
+    //                 this.plants.splice(oldIndex,1);
+    //               this.plants.splice(newIndex,0,plant);
+    //               this.savePlantService.savePlants(this.plants);
+    //               this.plants=this.savePlantService.get();
+    //              // }
+                  
+                  
+    //         }
+    //     }
+    // });
       }
       if(el.classList.contains('group')){
         // console.log(this.grupy);
@@ -151,8 +221,6 @@ export class MojeRoslinyComponent implements OnInit, OnDestroy {
   }
 }
 
-
-
   ngOnInit() {
     this.plants=this.savePlantService.get();
     this.grupy=this.savePlantService.getGrupy();
@@ -192,12 +260,7 @@ this.onChanges();
     }
     removeGroup(group:any){
       if(this.plants!=null){
-        this.plants.filter((plant, index) =>{
-            if(plant.grupa==group){
-              //this.groupHasPlants.push(plant);
-              this.plants.splice(index,1);
-          }
-      });
+      this.plants = this.plants.filter(x => x.grupa !== group);
     }
     this.savePlantService.savePlants(this.plants);
     this.plants=this.savePlantService.get();

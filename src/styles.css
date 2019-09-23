@@ -44,6 +44,7 @@ form .buttons{
     font-size: 18px;
     font-weight: 600;
     min-width: 200px;
+    cursor:pointer;
     }
     .button.next-button{
       background-color: #53b418;
