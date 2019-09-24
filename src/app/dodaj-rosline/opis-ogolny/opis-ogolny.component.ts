@@ -55,7 +55,7 @@ export class OpisOgolnyComponent implements OnInit {
         kwitnienieDo: [''],
         nazwaLacinska: [''],
         kolorKwiatow: [''],
-        wysokosc: ['', Validators.pattern("^[0-9](\[.,][0-9]+)?$")],
+        wysokosc: ['', Validators.pattern("^[0-9]{1,2}([,.][0-9]{0,2})?$")],
         pokroj: [''],
         zdjecie: [''],
     });
