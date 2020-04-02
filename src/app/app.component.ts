@@ -32,7 +32,7 @@ import { Component, ViewChild, ElementRef} from '@angular/core';
 ]
 })
 export class AppComponent {
-  title='Zielonomi';
+  title='Greenspace';
   @ViewChild('navbarSupportedContent') menu : ElementRef;
 removeShow(){
   this.menu.nativeElement.classList.remove("show");
