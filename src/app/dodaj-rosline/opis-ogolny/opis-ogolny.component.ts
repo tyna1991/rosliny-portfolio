@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule,Va
 import {WorkflowService} from './../../workflow.service';
 import {STEPS} from './../../workflow.model';
 import {Sample} from './../../color-picker.module';
+import { ActiveLinkService } from '../../active-link.service'; 
 
 
 @Component({
@@ -29,7 +30,7 @@ export class OpisOgolnyComponent implements OnInit {
   fileToUpload: File = null;
   imageSrc: string;
   plant:Formdata;
-  constructor(private submitService:SubmitService, private savePlantService: SavePlantService, private activeRoute:ActivatedRoute, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder, private workflowService: WorkflowService) {
+  constructor(private activeLinkService : ActiveLinkService, private submitService:SubmitService, private savePlantService: SavePlantService, private activeRoute:ActivatedRoute, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder, private workflowService: WorkflowService) {
   }
 
   ngOnInit() {
@@ -103,7 +104,9 @@ export class OpisOgolnyComponent implements OnInit {
 
   goToNext() {
       if (this.save(this.ogolnyForm)) {
+        console.log('gotonext');
           this.router.navigate(['../wymagania'], {relativeTo: this.activeRoute});
+          this.activeLinkService.updateId(2);
       }
   }
   goToLast(){

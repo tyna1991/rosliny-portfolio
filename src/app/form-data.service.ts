@@ -17,7 +17,8 @@ export class FormDataService {
     private isWymaganiaFormValid: boolean = false;
     private isPielegnacjaFormValid: boolean = false;
     private isPDodatkoweFormValid: boolean = false;
- 
+    
+    
     getSample() : Sample{
         var sample:Sample = {
             color:this.sample.color,

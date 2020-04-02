@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormDataService } from '../../form-data.service';
 import { Wymagania } from '../../formdata.model';
 import { SubmitService } from '../../submit.service';
+import { ActiveLinkService } from '../../active-link.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import {WorkflowService} from './../../workflow.service';
@@ -33,7 +34,7 @@ export class WymaganiaComponent implements OnInit {
   { name: 'słaba' },
   ];
   phArray=["-4,5","4,5", "5","5,5", "6","6,5", "7", "7,5", "7,5-"];
-  constructor(private submitService:SubmitService, private activeRoute:ActivatedRoute, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder, private workflowService: WorkflowService) {
+  constructor(private activeLinkService : ActiveLinkService, private submitService:SubmitService, private activeRoute:ActivatedRoute, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder, private workflowService: WorkflowService) {
   }
 
   ngOnInit() {
@@ -90,12 +91,14 @@ export class WymaganiaComponent implements OnInit {
     if (this.save(this.wymaganiaForm)) {
         // Navigate to the personal page
         this.router.navigate(['../opis-ogolny'], {relativeTo: this.activeRoute});
+        this.activeLinkService.updateId(1);
     }
 }
   goToNext() {
       if (this.save(this.wymaganiaForm)) {
           // Navigate to the work page
           this.router.navigate(['../pielegnacja'], {relativeTo: this.activeRoute});
+          this.activeLinkService.updateId(3);
       }
   }
   goToLast(){

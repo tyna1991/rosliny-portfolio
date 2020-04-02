@@ -3,14 +3,14 @@
         <div class="liner"></div>          
         <!-- circular user icon -->
         <li >
-            <a  class="active" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="opis ogólny"  (click)=canActivate1($event)>
+            <a [ngClass]="{'active': id === 1 }" id="1"   data-toggle="tab" title="opis ogólny"  (click)=canActivate1($event)>
                 opis ogolny<span class="round-tabs one">
                 </span>
             </a>
         </li>
         <!-- circular tasks icon -->
          <li >
-            <a  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="wymagania"  (click)=canActivate2($event)>
+            <a [ngClass]="{'active': id === 2 }" id="2"   data-toggle="tab" title="wymagania"  (click)=canActivate2($event)>
                 wymagania<span class="round-tabs two">
                 </span> 
             </a>
@@ -18,7 +18,7 @@
  
         <!-- circular home icon -->
         <li >
-            <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="pielegnacja" (click)=canActivate3($event)>    
+            <a [ngClass]="{'active': id === 3 }" id="3"   data-toggle="tab" title="pielegnacja" (click)=canActivate3($event)>    
                 pielegnacja<span class="round-tabs three">
                 </span>
             </a>
@@ -26,7 +26,7 @@
  
         <!-- circular ok icon -->
         <li >
-            <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  data-toggle="tab" title="dodatkowe informacje" (click)=canActivate4($event)>
+            <a [ngClass]="{'active': id === 4 }" id="4"   data-toggle="tab" title="dodatkowe informacje" (click)=canActivate4($event)>
                 dodatkowe informacje<span class="round-tabs four">
                 </span>
             </a>

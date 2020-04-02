@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray, For
 import {WorkflowService} from './../../workflow.service';
 import {STEPS} from './../../workflow.model';
 import {SavePlantService} from './../../save-plant.service';
+import { ActiveLinkService } from '../../active-link.service'; 
 
 @Component({
   selector: 'dodatkowe-informacje',
@@ -25,7 +26,7 @@ export class DodatkoweInformacjeComponent implements OnInit {
   defaultGroup;
   grupySub:any[];
 
-  constructor(private submitService:SubmitService, private activeRoute:ActivatedRoute, private savePlantService : SavePlantService, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder) {
+  constructor(private activeLinkService : ActiveLinkService, private submitService:SubmitService, private activeRoute:ActivatedRoute, private savePlantService : SavePlantService, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -84,6 +85,7 @@ export class DodatkoweInformacjeComponent implements OnInit {
     if (this.save(this.dodatkoweForm)) {
         // Navigate to the personal page
         this.router.navigate(['../pielegnacja'], {relativeTo: this.activeRoute});
+        this.activeLinkService.updateId(3);
     }
 }
   // goToNext() {

@@ -27,7 +27,7 @@ export class DodajRoslineComponent implements OnInit {
             hex:'#fff',
         },
         {
-          label: 'zółty',
+          label: 'żółty',
             hex:'#ffeb3b'
         },
           {

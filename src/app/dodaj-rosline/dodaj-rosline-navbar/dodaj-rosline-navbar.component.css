@@ -3,11 +3,11 @@
 content:'';
 width:30px;
 height: 30px;
-border:1px solid #53B418;
+border:2px solid #dae0d9;
 border-radius:50%;
 display: block;
 margin: 0 auto;
-margin-bottom: 15px;
+margin-bottom: 25px;
 }
 #myTab li:last-child a::after{
     content:none;
@@ -17,14 +17,14 @@ margin-bottom: 15px;
     text-align: center;
     color:#000;
     line-height: 20px;
-    font-weight: 300;
+    font-weight: 500;
     cursor:pointer;
 }
 #myTab li a::after{
     content: '';
     width: 65%;
-    height: 1px;
-    background-color: #E4E4E4;
+    height: 2px;
+    border: 1px solid #dae0d9;
     position: absolute;
     left: 67%;
     top: 16px;
@@ -36,6 +36,7 @@ margin-bottom: 15px;
 }
 #myTab li a.active{
     font-weight: 600;
+    color: #094b17;
 }
 #myTab li a.active::before{
     background:url(../../../assets/images/circle.png) center no-repeat;
@@ -44,7 +45,7 @@ margin-bottom: 15px;
 }
 .nav-tabs{
     width:100%;
-    margin: 75px 0 50px;
+    margin: 75px 0 75px;
     border: none;
 }
 @media(max-width:600px){

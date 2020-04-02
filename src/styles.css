@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.navbar>.container{
+  padding: 0px 50px;
+}
+.form-control{
+  border: 1px solid #dae0d9 !important;
+}
 .add-file{
     height: auto !important;
 }
@@ -24,6 +30,7 @@
 }
 .form-group{
   position: relative;
+  margin-bottom: 2.5rem;
 }
 .board{
   margin-bottom:70px;
@@ -40,29 +47,30 @@ form .buttons{
   }
   .button{
     -webkit-appearance: none;
-    border-radius: 30px;
-    padding: 10px 40px;
+    border-radius: 8px;
+    padding: 14px 40px;
     height: auto;
     line-height: normal;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
     min-width: 200px;
-    cursor:pointer;
+    cursor: pointer;
     }
     .button.next-button{
-      background-color: #53b418;
+      background-color: #16bd3aff;
       border: 0px;
       color: #fff;
       margin-left: 10px;
+      margin-right: 10px;
       }
       .button.finish-button{
-      background-color: #39800F;
+      background-color: #094b17ff;
       border: 0px;
       color: #fff;
       margin-left: 20px;
     }
     .button.prev-button{
-      border:1px solid #53b418;
+      border:1px solid #16bd3aff;
       background-color: #fff;
       color: #797979;
       margin-right: 10px;
@@ -72,15 +80,16 @@ form .buttons{
   font-size: 15px;
 }
 .navbar-light .navbar-nav .nav-link{
-  text-transform: uppercase;
   color: #000;
   width:150px;
+  font-size: 18px;
+  font-weight: 500;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline{
   height: 0px !important;
 }
 #navbarSupportedContent{
-  margin-left: 20px;
+  margin-left: 4em;
 }
 /* .navbarSupportedContent li{
   margin-left: 50px;
@@ -116,7 +125,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif;
 }
 
 #keyword{
-  border: 1px solid #ccc !important;
+  border: 1px solid #dae0d9 !important;
 }
 .row{
   padding: 0;
@@ -191,7 +200,7 @@ margin-top: 40px;
 margin-bottom: 10px;
 }
 .action-button{
-  background-color: #53b418;
+  background-color: #16bd3aff;
   border: 0px;
   color: #fff;
   -webkit-appearance: none;
@@ -217,7 +226,10 @@ margin-bottom: 10px;
   font-style: initial;
   content: "\f141";
   position: relative;
-  top: -6px;
+  color: #497a53;
+}
+.navbar-toggler-icon{
+  width:1.2em;
 }
 /* dragula css */
 /* in-flight clone */
@@ -266,7 +278,7 @@ li.plant{
 }
 
 .ph-requirements, .florescence{
- border:1px solid #cccccc;
+ border:1px solid #dae0d9;
  border-radius: 6px; 
  padding: 0 5px;
 }
@@ -286,7 +298,7 @@ flex-wrap: wrap;
 } */
 
 .mat-form-field-ripple {
-  background-color:#53b418 !important;
+  background-color:#16bd3aff !important;
 }
 .mat-form-field-label.ng-star-inserted{
 /* transform: none!important; */
@@ -315,6 +327,19 @@ flex-wrap: wrap;
   .modal-content{
     width: 60%;
   }
+}
+@media(max-width:991px){
+  
+.navbar>.container{
+    padding:0px;
+}
+
+.navbar img{
+  margin: 0 auto;
+}
+.navbar-light .navbar-toggler{
+  width:50px;
+}
 }
 @media(max-width:700px){
   
@@ -356,9 +381,9 @@ margin-top:15px;
 
 }
 @media(max-width:450px){
-  .container{
+  /* .container{
     padding:0px;
-  }
+  } */
   .button.prev-button{
     margin-right: 0;
     margin-top: 15px;

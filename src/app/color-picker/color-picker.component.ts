@@ -20,7 +20,7 @@ export class ColorPickerComponent implements OnInit {
           hex:'#fff',
       },
       {
-        label: 'zółty',
+        label: 'żółty',
           hex:'#ffeb3b'
       },
         {
@@ -59,6 +59,7 @@ export class ColorPickerComponent implements OnInit {
     };
   
   ngOnInit() {
+    console.log(this.heading);
   }
   
   @Input() heading: string;

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import {WorkflowService} from './../../workflow.service';
 import {STEPS} from './../../workflow.model';
+import { ActiveLinkService } from '../../active-link.service'; 
 
 @Component({
   selector: 'app-pielegnacja',
@@ -17,7 +18,7 @@ export class PielegnacjaComponent implements OnInit {
   form: any;
   pielegnacjaForm:FormGroup;
   
-  constructor(private submitService:SubmitService, private activeRoute:ActivatedRoute, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder, private workflowService: WorkflowService) {
+  constructor(private activeLinkService : ActiveLinkService, private submitService:SubmitService, private activeRoute:ActivatedRoute, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder, private workflowService: WorkflowService) {
   }
 
   ngOnInit() {
@@ -37,12 +38,14 @@ export class PielegnacjaComponent implements OnInit {
     if (this.save(this.pielegnacjaForm)) {
         // Navigate to the personal page
         this.router.navigate(['../wymagania'], {relativeTo: this.activeRoute});
+        this.activeLinkService.updateId(2);
     }
 }
   goToNext() {
       if (this.save(this.pielegnacjaForm)) {
           // Navigate to the work page
           this.router.navigate(['../dodatkowe-informacje'], {relativeTo: this.activeRoute});
+          this.activeLinkService.updateId(4);
       }
   }
   goToLast(){

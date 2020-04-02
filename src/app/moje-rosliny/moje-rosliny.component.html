@@ -1,146 +1,176 @@
 <app-add-group-modal [open]="open" (closed)=onClose($event)></app-add-group-modal>
-<div class="container">
+<div class="">
   <div class="your-plants">
+<div class='bg-gray-wrapper'>
+    <div class="plants-desc container">
+      <div class="about-adding-plant">
+        <div class="add-plant-container">
+          <div><a class="button add-plant" routerLink="/dodaj-rosline/" >Dodaj roślinę</a></div>
+          <div><button class="button add-group" (click)=openModal()>Dodaj grupę</button></div>
+        </div>
+      </div>
+      <div class="buttons">
+        <div class="desc">
+          <p>Twój ogród podzielony jest na różne części i chcesz lepiej zorganizować kolekcję roślin poprzez podział
+            na kategorie? W tym celu możesz użyć funkcji dodawania grup.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="your-plant-container">
       <div class="filters"></div>
       <div class="plants">
-        <div class="plants-desc">
-          <div class="about-adding-plant">
-            <div class="add-plant-container">
-              <div><a class="button add-plant" href="./dodaj-rosline/opis-ogolny">Dodaj roślinę</a></div>
-              <div><button class="button add-group" (click)=openModal()>Dodaj grupę</button></div>
-            </div>
-          </div>
-          <div class="buttons">
-            <div class="desc">
-              <p>Twój ogród podzielony jest na różne części i chcesz lepiej zorganizować kolekcję roślin poprzez podział na kategorie? W tym celu możesz użyć funkcji dodawania grup.</p>
-            </div>
-          </div>
-        </div>
+        
         <!-- <ng-container *ngIf="!hasPlants"><h3 class="no-plants">Brak roślin</h3></ng-container> -->
-        <div class="group-move dragula" >
-        <div *ngFor="let grupa of grupy" class="group" >
-          <div class="group-container" attr.data-group="{{grupa}}">
-          <div class="options"><span class="group-option"><i class="fas fa-ellipsis-h"></i></span>
-            <div class="option-content">
-              <ul>
-                <li (click)="selectedGroup=grupa; clickedInside($event); edit()">Zmień nazwę</li>
-                <li (click)="removeGroup(grupa)">Usuń</li>
-              </ul>
+        <div class="group-move dragula container">
+          <div *ngFor="let grupa of grupy" class="group">
+            <div class="group-container" attr.data-group="{{grupa}}">
+              <div class="options"><span class="group-option"><i class="fas fa-ellipsis-h"></i>
+                  <div class="option-content">
+                    <ul>
+                      <li (click)="selectedGroup=grupa; clickedInside($event); edit()">Zmień nazwę</li>
+                      <li (click)="removeGroup(grupa)">Usuń</li>
+                    </ul>
+                  </div>
+                </span>
+
+              </div>
+
+
+              <div>
+                <div *ngIf="groupWithPlants.indexOf(grupa)==-1">
+                  <span class="no-plants-in-group">Brak roślin</span>
+                </div>
+                <div class="group-name-editable">
+                  <span class="group-name">{{grupa}}</span>
+
+                  <div [ngClass]="(selectedGroup==grupa)?'show':'hide'" (click)="clickedInside($event)">
+                    <form [formGroup]=newNameOfGroup>
+                      <div><input name="changeName" placeholder={{grupa}} formControlName="nazwa">
+                        <div class="alert alert-danger" *ngIf="nameExist">
+                          <span>Nazwa grupy już istnieje</span>
+                        </div>
+                      </div>
+                      <button (click)=submitNewName(newNameOfGroup) class="change-name-button">Zmień nazwę</button>
+                    </form>
+                  </div>
+                </div>
+
+
+                <ul class="plants-wrapper plant-move dragula" attr.data-groupname="{{grupa}}">
+                  <ng-container class="plant" *ngFor="let plant of plants">
+
+                    <li class="single-plant" *ngIf="plant.grupa==grupa" attr.data-plantid="{{plant.id}}"
+                      attr.data-plantgroup="{{grupa}}">
+
+                      <a [routerLink]="['/plant', plant.id]">
+                        <div class="plant-image"> <img src="{{plant.zdjecie}}"></div>
+                      </a>
+                      <div class="plant-detalis"> <a class="single-plant-link"
+                          [routerLink]="['/plant', plant.id]"><span>{{plant.gatunek}}<span class="variant"
+                              *ngIf="plant.odmiana"> '{{plant.odmiana}}'</span></span></a>
+                        <div><span class="latin-name">{{plant.nazwaLacinska}}</span></div>
+                        <div class="more-detalis">
+                          <div class="height" *ngIf="plant.wysokosc"><img src="../../assets/images/size.png"
+                              style="height:15px;">{{plant.wysokosc}}m</div>
+                          <div class="light-requirements">
+                            <div *ngIf="plant.naslonecznienie !=undefined && plant.naslonecznienie[0]"><img
+                                src="../../assets/images/sun.png" style="height:20px;">
+                            </div>
+                            <div *ngIf="plant.naslonecznienie !=undefined && plant.naslonecznienie[1]"><img
+                                src="../../assets/images/halfsun.png" style="height:20px;">
+                            </div>
+                            <div *ngIf="plant.naslonecznienie !=undefined && plant.naslonecznienie[2]"><img
+                                src="../../assets/images/dark.png" style="height:20px;">
+                            </div>
+                          </div>
+                          <div class="water-requirements">
+                            <div *ngIf="plant.wilgotnosc !=undefined && plant.wilgotnosc[0]"><img
+                                src="../../assets/images/1-wet.png" style="height:15px;">
+                            </div>
+                            <div *ngIf="plant.wilgotnosc !=undefined && plant.wilgotnosc[1]"><img
+                                src="../../assets/images/2-wet.png" style="height:15px;">
+                            </div>
+                            <div *ngIf="plant.wilgotnosc !=undefined && plant.wilgotnosc[2]"><img
+                                src="../../assets/images/3-wet.png" style="height:15px;">
+                            </div>
+                          </div>
+                          <div class="ph-requirements" *ngIf="plant.phOd">
+                            <span>{{plant.phOd}}</span><span>-</span>
+                            <span>{{plant.phDo}}pH</span>
+                          </div>
+                          <div class="flowers-color">
+                            <div *ngIf="plant.kolorKwiatow=='niebieski'"><img src="../../assets/images/niebieski.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='pomarańczowy'"><img
+                                src="../../assets/images/pomaranczowy.png" style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='różowy'"><img src="../../assets/images/rozowy.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='zielony'"><img src="../../assets/images/zielony.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='żółty'"><img src="../../assets/images/zolty.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='czarny'"><img src="../../assets/images/czarny.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='czerwony'"><img src="../../assets/images/czerwony.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='biały'"><img src="../../assets/images/bialy.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='fioletowy'"><img src="../../assets/images/fioletowy.png"
+                                style="height:20px;"></div>
+                            <div *ngIf="plant.kolorKwiatow=='brązowy'"><img src="../../assets/images/brazowe.png"
+                                style="height:20px;"></div>
+                          </div>
+                          <div class="florescence" *ngIf="plant.kwitnienieOd">
+                            <span *ngIf="plant.kwitnienieOd=='styczeń'">I</span>
+                            <span *ngIf="plant.kwitnienieOd=='luty'">II</span>
+                            <span *ngIf="plant.kwitnienieOd=='marzec'">III</span>
+                            <span *ngIf="plant.kwitnienieOd=='kwiecień'">IV</span>
+                            <span *ngIf="plant.kwitnienieOd=='maj'">V</span>
+                            <span *ngIf="plant.kwitnienieOd=='czerwiec'">VI</span>
+                            <span *ngIf="plant.kwitnienieOd=='lipiec'">VII</span>
+                            <span *ngIf="plant.kwitnienieOd=='sierpień'">VIII</span>
+                            <span *ngIf="plant.kwitnienieOd=='wrzesień'">IX</span>
+                            <span *ngIf="plant.kwitnienieOd=='październik'">X</span>
+                            <span *ngIf="plant.kwitnienieOd=='listopad'">XI</span>
+                            <span *ngIf="plant.kwitnienieOd=='grudzień'">XII</span>
+
+                            <span>-</span>
+                            <span *ngIf="plant.kwitnienieDo=='styczeń'">I</span>
+                            <span *ngIf="plant.kwitnienieDo=='luty'">II</span>
+                            <span *ngIf="plant.kwitnienieDo=='marzec'">III</span>
+                            <span *ngIf="plant.kwitnienieDo=='kwiecień'">IV</span>
+                            <span *ngIf="plant.kwitnienieDo=='maj'">V</span>
+                            <span *ngIf="plant.kwitnienieDo=='czerwiec'">VI</span>
+                            <span *ngIf="plant.kwitnienieDo=='lipiec'">VII</span>
+                            <span *ngIf="plant.kwitnienieDo=='sierpień'">VIII</span>
+                            <span *ngIf="plant.kwitnienieDo=='wrzesień'">IX</span>
+                            <span *ngIf="plant.kwitnienieDo=='październik'">X</span>
+                            <span *ngIf="plant.kwitnienieDo=='listopad'">XI</span>
+                            <span *ngIf="plant.kwitnienieDo=='grudzień'">XII</span>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <div class="options-plant"><span class="plant-option"><i class="fas fa-ellipsis-h"></i></span>
+                        <div class="option-content-plant">
+                          <ul>
+                            <li (click)="removePlant(plant)">Usuń</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  </ng-container>
+                </ul>
+              </div>
             </div>
           </div>
-          
-            
-              <div>
-                  <div *ngIf="groupWithPlants.indexOf(grupa)==-1">
-                      <span class="no-plants-in-group">Brak roślin</span>
-                  </div>
-                  <div class="group-name-editable">
-                      <span class="group-name" >{{grupa}}</span>
-                     
-                      <div [ngClass]="(selectedGroup==grupa)?'show':'hide'" (click)="clickedInside($event)">
-                          <form [formGroup]=newNameOfGroup>
-                          <div><input name="changeName" placeholder={{grupa}} formControlName="nazwa"> 
-                            <div class="alert alert-danger" *ngIf="nameExist">
-                                <span>Nazwa grupy już istnieje</span>
-                              </div></div>
-                          <button (click)=submitNewName(newNameOfGroup) class="change-name-button">Zmień nazwę</button>
-                        </form>
-                        </div>
-                  </div>
-                  
-                 
-                  <ul class="plants-wrapper plant-move dragula" attr.data-groupname="{{grupa}}">
-                      <ng-container class="plant" *ngFor="let plant of plants" >
-                        
-                        <li class="single-plant" *ngIf="plant.grupa==grupa" attr.data-plantid="{{plant.id}}" attr.data-plantgroup="{{grupa}}">
-                           
-                            <a [routerLink]="['/plant', plant.id]"><div class="plant-image"> <img src="{{plant.zdjecie}}"></div></a>
-                          <div class="plant-detalis"> <a class="single-plant-link" [routerLink]="['/plant', plant.id]"><span>{{plant.gatunek}}<span class="variant" *ngIf="plant.odmiana"> '{{plant.odmiana}}'</span></span></a>
-                            <div><span class="latin-name">{{plant.nazwaLacinska}}</span></div>
-                           <div class="more-detalis">
-                                <div class="height" *ngIf="plant.wysokosc"><img src="../../assets/images/size.png" style="height:15px;">{{plant.wysokosc}}m</div>
-                            <div class="light-requirements">
-                              <div *ngIf="plant.naslonecznienie !=undefined && plant.naslonecznienie[0]"><img src="../../assets/images/sun.png" style="height:20px;">
-                              </div>
-                              <div *ngIf="plant.naslonecznienie !=undefined && plant.naslonecznienie[1]"><img src="../../assets/images/halfsun.png" style="height:20px;">
-                              </div>
-                              <div *ngIf="plant.naslonecznienie !=undefined && plant.naslonecznienie[2]"><img src="../../assets/images/dark.png" style="height:20px;">
-                              </div>
-                            </div>
-                            <div class="water-requirements">
-                                <div *ngIf="plant.wilgotnosc !=undefined && plant.wilgotnosc[0]"><img src="../../assets/images/1-wet.png" style="height:15px;">
-                                </div>
-                                <div *ngIf="plant.wilgotnosc !=undefined && plant.wilgotnosc[1]"><img src="../../assets/images/2-wet.png" style="height:15px;">
-                                </div>
-                                <div *ngIf="plant.wilgotnosc !=undefined && plant.wilgotnosc[2]"><img src="../../assets/images/3-wet.png" style="height:15px;">
-                                </div>
-                              </div>
-                            <div class="ph-requirements" *ngIf="plant.phOd">
-                                    <span>{{plant.phOd}}</span><span>-</span>
-                                    <span>{{plant.phDo}}pH</span>
-                                  </div>
-                                  <div class="flowers-color">
-                                        <div *ngIf="plant.kolorKwiatow=='niebieski'"><img src="../../assets/images/niebieski.png" style="height:20px;"></div>
-                                            <div *ngIf="plant.kolorKwiatow=='pomarańczowy'"><img src="../../assets/images/pomaranczowy.png" style="height:20px;"></div>
-                                                <div *ngIf="plant.kolorKwiatow=='różowy'"><img src="../../assets/images/rozowy.png" style="height:20px;"></div>
-                                                    <div *ngIf="plant.kolorKwiatow=='zielony'"><img src="../../assets/images/zielony.png" style="height:20px;"></div>
-                                                        <div *ngIf="plant.kolorKwiatow=='żółty'"><img src="../../assets/images/zolty.png" style="height:20px;"></div>
-                                                        <div *ngIf="plant.kolorKwiatow=='czarny'"><img src="../../assets/images/czarny.png" style="height:20px;"></div>
-                                                            <div *ngIf="plant.kolorKwiatow=='czerwony'"><img src="../../assets/images/czerwony.png" style="height:20px;"></div>
-                                                                <div *ngIf="plant.kolorKwiatow=='biały'"><img src="../../assets/images/bialy.png" style="height:20px;"></div>
-                                                                    <div *ngIf="plant.kolorKwiatow=='fioletowy'"><img src="../../assets/images/fioletowy.png" style="height:20px;"></div>
-                                                                        <div *ngIf="plant.kolorKwiatow=='brązowy'"><img src="../../assets/images/brazowe.png" style="height:20px;"></div>
-                                        </div>
-                                        <div class="florescence" *ngIf="plant.kwitnienieOd">
-                                                <span *ngIf="plant.kwitnienieOd=='styczeń'">I</span>
-                                                <span *ngIf="plant.kwitnienieOd=='luty'">II</span>
-                                                <span *ngIf="plant.kwitnienieOd=='marzec'">III</span>
-                                                <span *ngIf="plant.kwitnienieOd=='kwiecień'">IV</span>
-                                                <span *ngIf="plant.kwitnienieOd=='maj'">V</span>
-                                                <span *ngIf="plant.kwitnienieOd=='czerwiec'">VI</span>
-                                                <span *ngIf="plant.kwitnienieOd=='lipiec'">VII</span>
-                                                <span *ngIf="plant.kwitnienieOd=='sierpień'">VIII</span>
-                                                <span *ngIf="plant.kwitnienieOd=='wrzesień'">IX</span>
-                                                <span *ngIf="plant.kwitnienieOd=='październik'">X</span>
-                                                <span *ngIf="plant.kwitnienieOd=='listopad'">XI</span>
-                                                <span *ngIf="plant.kwitnienieOd=='grudzień'">XII</span>
-                                                
-                                                <span>-</span>
-                                                <span *ngIf="plant.kwitnienieDo=='styczeń'">I</span>
-                                                <span *ngIf="plant.kwitnienieDo=='luty'">II</span>
-                                                <span *ngIf="plant.kwitnienieDo=='marzec'">III</span>
-                                                <span *ngIf="plant.kwitnienieDo=='kwiecień'">IV</span>
-                                                <span *ngIf="plant.kwitnienieDo=='maj'">V</span>
-                                                <span *ngIf="plant.kwitnienieDo=='czerwiec'">VI</span>
-                                                <span *ngIf="plant.kwitnienieDo=='lipiec'">VII</span>
-                                                <span *ngIf="plant.kwitnienieDo=='sierpień'">VIII</span>
-                                                <span *ngIf="plant.kwitnienieDo=='wrzesień'">IX</span>
-                                                <span *ngIf="plant.kwitnienieDo=='październik'">X</span>
-                                                <span *ngIf="plant.kwitnienieDo=='listopad'">XI</span>
-                                                <span *ngIf="plant.kwitnienieDo=='grudzień'">XII</span>
-                                                
-                                        </div>
-                                       
-                                        </div>
-                                    
-                          </div>
-                          <div class="options-plant"><span class="plant-option"><i class="fas fa-ellipsis-h"></i></span>
-                            <div class="option-content-plant">
-                              <ul>
-                                <li (click)="removePlant(plant)">Usuń</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </li>
-                  </ng-container>
-                  </ul>
-                </div>
-          </div>
         </div>
-        </div>
-    </div>
+      </div>
 
+    </div>
   </div>
-</div>
 </div>

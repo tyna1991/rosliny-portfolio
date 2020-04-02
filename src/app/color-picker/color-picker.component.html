@@ -2,7 +2,7 @@
   <div class="summary-info" (click)="toggleColors()">
     <div class="info">
       <div class="form-control color-option dropdown">
-        <div class="circle" [ngStyle]="{'background': color}" [ngClass]="{'white': color=='#fff'}"> </div>
+        <div class="circle" [ngStyle]="heading!==undefined && {'background': color}" [ngClass]="{'white': color=='#fff'}"> </div>
         <p class="style option-label">{{ heading }}</p>
         <p class="style-value" style="display:none">{{ color }}</p></div>
         

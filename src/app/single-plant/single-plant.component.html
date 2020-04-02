@@ -46,7 +46,7 @@
                     <span>{{plant[0].phOd}}</span><span>-</span>
                     <span>{{plant[0].phDo}}pH</span>
                   </span>
-                  <span class="flowers-color" *ngIf="plant[0].kolorKwiatow !=undefined">
+                  <span class="flowers-color" *ngIf="plant[0].kolorKwiatow !=undefined && plant[0].kolorKwiatow !==''">
                         <span>kolor kwiatów: </span>
                     <span *ngIf="plant[0].kolorKwiatow=='niebieski'">niebieski</span>
                     <span *ngIf="plant[0].kolorKwiatow=='pomarańczowy'">pomarańczowy</span>
