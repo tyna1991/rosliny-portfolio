@@ -35,7 +35,7 @@ export class OpisOgolnyComponent implements OnInit {
 
   ngOnInit() {
    
-    
+    this.activeLinkService.updateId(1);
     this.dateIndexOd= 0;
     this.dateIndexDo= 0;
       this.ogolny = this.formDataService.getOgolny();
