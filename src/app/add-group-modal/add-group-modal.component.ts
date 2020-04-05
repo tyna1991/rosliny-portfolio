@@ -25,10 +25,7 @@ export class AddGroupModalComponent implements OnInit {
   });
   this.grupy={nazwa:['']};
       this.grupy.nazwa = this.savePlantService.getGrupy();
-      if(this.grupy.nazwa==null){
-        this.grupy={nazwa:['']};
-        this.grupy.nazwa=['grupa domyślna'];
-      }
+      
   this.onChanges();
   this.formDataService.currentGroups.subscribe(val=>{
     this.grupy.nazwa=val as string[];
@@ -48,6 +45,7 @@ export class AddGroupModalComponent implements OnInit {
     this.open=!this.open;
     this.formDataService.checkGroups(this.grupy.nazwa);
     this.savePlantService.saveGrupy(this.grupy.nazwa);
+    
     this.newGroup = this.formBuilder.group({
         nazwa: ['', Validators.required],
     });

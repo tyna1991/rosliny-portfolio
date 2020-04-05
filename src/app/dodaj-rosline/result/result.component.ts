@@ -26,32 +26,31 @@ export class ResultComponent implements OnInit {
         this.formDataService.currentGroups.subscribe(val=>{
              this.grupy=val as string[];
         })
+        console.log(this.grupy);
         this.formData = this.formDataService.getFormData();
         if(this.formData.zdjecie=='#' || this.formData.zdjecie==undefined){
             this.formData.zdjecie='../../assets/images/default.png'
         }
-        if(this.formData.grupa==undefined || this.formData.grupa==''){
-            this.formData.grupa='grupa domyślna';
-            if(this.grupy!=null){
-                let index=this.grupy.findIndex(elem=>elem=="grupa domyślna");
-                console.log(index);
-            if(index==-1){
-                    this.grupy.push('grupa domyślna');
-                    this.savePlantService.saveGrupy(this.grupy);
-                    this.formDataService.checkGroups(this.grupy);
-            }          
-        }else{
+        if(this.grupy==undefined || !(this.grupy.length)){
                     this.grupy=[];
                     this.grupy.push('grupa domyślna');
                     this.savePlantService.saveGrupy(this.grupy);
-                    this.formDataService.checkGroups(this.grupy);
+                    this.formDataService.checkGroups(this.grupy);  
+    }else{
+        const index = this.grupy.findIndex((elem)=>{return elem=="grupa domyślna"});
+        if(index<0){
+            this.grupy.push('grupa domyślna');
+            this.savePlantService.saveGrupy(this.grupy);
+            this.formDataService.checkGroups(this.grupy);  
         }
-        
     }
+   
+
     this.isFormOgolnyValid = this.formDataService.isFormOgolnyValid();
     this.plants=this.savePlantService.get();
 }
     submit() {
+        console.log(this.grupy);
         console.log("submit");
         console.log(this.formData);
         let indexExist=-1;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormDataService } from '../../form-data.service';
 import { SubmitService } from '../../submit.service';
 import { DodatkoweInformacje, Grupy } from '../../formdata.model';
@@ -8,13 +8,15 @@ import {WorkflowService} from './../../workflow.service';
 import {STEPS} from './../../workflow.model';
 import {SavePlantService} from './../../save-plant.service';
 import { ActiveLinkService } from '../../active-link.service'; 
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'dodatkowe-informacje',
   templateUrl: './dodatkowe-informacje.component.html',
   styleUrls: ['./dodatkowe-informacje.component.css']
 })
-export class DodatkoweInformacjeComponent implements OnInit {
+export class DodatkoweInformacjeComponent implements OnInit, OnDestroy {
   dodatkowe: DodatkoweInformacje;
   form: any;
   dodatkoweForm:FormGroup;
@@ -28,19 +30,30 @@ export class DodatkoweInformacjeComponent implements OnInit {
 
   constructor(private activeLinkService : ActiveLinkService, private submitService:SubmitService, private activeRoute:ActivatedRoute, private savePlantService : SavePlantService, private router: Router, private formDataService: FormDataService, private formBuilder: FormBuilder) {
   }
-
+  private unsubscribe$ = new Subject<void>();
   ngOnInit() {
     //   if(this.grupy==undefined){
     //       this.grupy={nazwa:['grupa domyślna']};
     //   }
       
       //this.savePlantService.saveGrupy(this.grupy.nazwa);
+      console.log("init");
       this.grupy={nazwa:['']};
       this.grupy.nazwa = this.savePlantService.getGrupy();
-      if(this.grupy.nazwa==null){
-        this.grupy={nazwa:['']};
-        this.grupy.nazwa=['grupa domyślna'];
-      }
+      console.log(this.grupy.nazwa);
+      const index = this.grupy.nazwa.findIndex((elem)=>{return elem=='grupa domyślna'});
+        if(this.grupy.nazwa==null){
+          this.grupy.nazwa =[''];
+          this.setDefaultGroup(index);
+          this.formDataService.checkGroups(this.grupy.nazwa);
+          this.savePlantService.saveGrupy(this.grupy.nazwa);
+        }
+        else if(index<0){
+          this.setDefaultGroup(index);
+          this.formDataService.checkGroups(this.grupy.nazwa);
+          this.savePlantService.saveGrupy(this.grupy.nazwa);
+        }
+      
       this.dodatkowe = this.formDataService.getDodatkowe();
       this.defaultGroup=this.dodatkowe.grupa;
       if(this.dodatkowe.grupa==undefined){
@@ -60,14 +73,24 @@ export class DodatkoweInformacjeComponent implements OnInit {
          inne:  this.dodatkowe.inne,
        });
        //this.onChanges();
-       this.formDataService.currentGroups.subscribe(val=>{
+       this.formDataService.currentGroups.pipe(takeUntil(this.unsubscribe$)).subscribe(val=>{
             this.grupy.nazwa=val as string[];
+            const indexOnChange = this.grupy.nazwa.findIndex((elem)=>{return elem=='grupa domyślna'});
+            this.setDefaultGroup(indexOnChange);
        })
 
        
        
   }
-
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+  setDefaultGroup(index){
+    if(index<0){
+      this.grupy.nazwa.push('grupa domyślna');
+    }
+  }
   save(form: any): boolean {
       if (!form.valid) {
           return false;

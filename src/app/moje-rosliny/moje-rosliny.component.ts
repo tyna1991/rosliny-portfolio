@@ -206,7 +206,7 @@ export class MojeRoslinyComponent implements OnInit, OnDestroy {
     }
  plants:Formdata[];
  newNameOfGroup:FormGroup;
-
+ showDefaultGroupBool : boolean = false;
  private clicked = false;
 
   
@@ -224,17 +224,31 @@ export class MojeRoslinyComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.plants=this.savePlantService.get();
     this.grupy=this.savePlantService.getGrupy();
+    console.log(this.grupy);
     this.checkIfGroupsHasPlants();
+    this.showDefaultGroup();
     this.formDataService.currentGroups.subscribe(val=>{
       this.grupy=val as string[];
+      console.log(this.grupy, "subscribe");
+      this.showDefaultGroup();
       this.checkIfGroupsHasPlants();
  })
  this.newNameOfGroup = this.formBuilder.group({
   nazwa: [''],
 });
-    //console.log(this.grupy.indexOf('aaa'));
 this.onChanges();
-  }
+}
+    showDefaultGroup(){
+      this.showDefaultGroupBool = false;
+      console.log(this.plants);
+      if(this.plants!=null){
+        this.plants.forEach(element => {
+          if(element.grupa == 'grupa domyślna'){
+            this.showDefaultGroupBool = true;
+          }
+        });
+      }
+    }
   openModal(){
     this.open=true;
     }
@@ -270,8 +284,7 @@ this.onChanges();
       }
       this.formDataService.checkGroups(this.grupy);
       this.savePlantService.saveGrupy(this.grupy);
-      this.grupy=this.savePlantService.getGrupy();
-      
+      this.grupy=this.savePlantService.getGrupy();   
 }
 removePlant(plant:Formdata){
   if(this.plants!=null){

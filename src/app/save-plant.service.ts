@@ -38,7 +38,7 @@ getPlant(id:string){
   
 }
 getGrupy(){
-  if (localStorage.getItem("grupy") == "undefined") {
+  if (localStorage.getItem("grupy") == undefined) {
     return [];
   }
   else{

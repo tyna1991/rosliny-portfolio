@@ -25,23 +25,16 @@ export class SubmitService {
     if(this.formData.zdjecie=='#' || this.formData.zdjecie==undefined){
         this.formData.zdjecie='../../assets/images/default.png'
     }
-    if(this.formData.grupa==undefined || this.formData.grupa==''){
-        this.formData.grupa='grupa domyślna';
-        if(this.grupy!=null){
-            let index=this.grupy.findIndex(elem=>elem=="grupa domyślna");
-            console.log(index);
-        if(index==-1){
-                this.grupy.push('grupa domyślna');
-                this.savePlantService.saveGrupy(this.grupy);
-                this.formDataService.checkGroups(this.grupy);
-        }          
-    }else{
-                this.grupy=[];
-                this.grupy.push('grupa domyślna');
-                this.savePlantService.saveGrupy(this.grupy);
-                this.formDataService.checkGroups(this.grupy);
-    }
-    
+    const index = this.grupy.findIndex((elem)=>{return elem=="grupa domyślna"});
+    if((this.formData.grupa=='grupa domyślna' || this.formData.grupa==undefined)){
+        if(this.formData.grupa==undefined){
+            this.formData.grupa='grupa domyślna';
+        }
+        if (index<0){
+            this.grupy.push('grupa domyślna');
+            this.savePlantService.saveGrupy(this.grupy);
+            this.formDataService.checkGroups(this.grupy);
+        }
   }
   this.isFormOgolnyValid = this.formDataService.isFormOgolnyValid();
   this.plants=this.savePlantService.get();

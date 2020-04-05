@@ -25,6 +25,7 @@
         <!-- <ng-container *ngIf="!hasPlants"><h3 class="no-plants">Brak roślin</h3></ng-container> -->
         <div class="group-move dragula container">
           <div *ngFor="let grupa of grupy" class="group">
+            <div *ngIf="!(grupa=='grupa domyślna' && !showDefaultGroupBool)">
             <div class="group-container" attr.data-group="{{grupa}}">
               <div class="options"><span class="group-option"><i class="fas fa-ellipsis-h"></i>
                   <div class="option-content">
@@ -168,6 +169,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
