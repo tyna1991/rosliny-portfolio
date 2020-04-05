@@ -100,6 +100,7 @@ id:number = 0;
       this.workflowService.validateStep(STEPS.ogolny, true);
       this.router.navigate(['./dodatkowe-informacje'], {relativeTo: this.activatedRoute});
     }else{
+      let element: HTMLElement = document.getElementById('buttonNext') as HTMLElement;
       if(!this.canActivateOgolnyCheck){
         this.workflowService.validateStep(STEPS.ogolny, false);
       }
