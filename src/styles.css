@@ -80,7 +80,7 @@ form .buttons{
   font-size: 15px;
 }
 .navbar-light .navbar-nav .nav-link{
-  color: #000;
+  color: #424242;
   width:150px;
   font-size: 17px;
   font-weight: 500;
@@ -271,9 +271,12 @@ margin-bottom: 10px;
 
 .latin-name{
   font-style: italic;
-  font-size: 14px;
+  font-size: 16px;
+  margin-top: 5px;
+  display: flex;
   font-weight: 300;
 }
+
 li.plant{
   width:45%;
 }

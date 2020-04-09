@@ -28,7 +28,6 @@ height: 100%;
     display:flex;
 }
 .your-plants{
-    margin-top: 40px;
     margin-bottom: 70px;
 }
 .add-plant-container .button{
@@ -70,12 +69,12 @@ height: 100%;
 .desc p{
     font-size: 15px;
     margin: 0 0 0 30px;
-    line-height: 25px;
-    padding: 10px 0px;
-    color:#000;
+    line-height: 29px;
+    padding: 10px 0;
+    color: #fff;
 }
 .desc{
-    border-left: 1px solid #497a53;
+    border-left: 1px solid #ffffff;
 }
 .single-plant{
     display:flex;
@@ -85,8 +84,8 @@ height: 100%;
     position: relative;
 }
 .bg-gray-wrapper{
-    background-color: #a2c49d;
-    background: linear-gradient(45deg, #497a53, #dae0d9);
+    background-color: #497a53;
+    background: linear-gradient(45deg,#497a53,#6bb5c3);
     padding: 50px 0 60px;
 }
 .plant-image img{
@@ -116,7 +115,7 @@ height: 100%;
 }
 .group .group-name{
     color: #094b17;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 500;
 }
 .no-plants{
@@ -236,7 +235,7 @@ height: 100%;
 .show{
     display: block;
     position: relative;
-    top: -26px;
+    top: -36px;
 }
 .hide{
     display: none;
@@ -274,7 +273,7 @@ height: 100%;
     display: flex;
     width:100%;
     font-weight: 600;
-    font-size:18px;
+    font-size:21px;
 }
 a{
     color:#000;
