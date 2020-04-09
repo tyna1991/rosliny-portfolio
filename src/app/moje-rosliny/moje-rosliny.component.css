@@ -41,7 +41,7 @@ height: 100%;
 .your-plant-container .plants{
     flex:4;
     margin-left: 20px;
-    margin-top:35px;
+    margin-top:10px;
 }
 .your-plant-container .filters{
     display:none;
